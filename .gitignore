@@ -1,0 +1,4 @@
+node_modules
+Podfile.lock
+.DS_Store
+.env*
