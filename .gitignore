@@ -2,10 +2,6 @@
 dist
 node_modules
 
-# npm/yarn files
-package-lock.json
-yarn.lock
-
 # iOS files
 Pods
 Podfile.lock
