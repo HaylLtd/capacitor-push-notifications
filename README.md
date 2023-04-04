@@ -61,7 +61,7 @@ You can configure the way the push notifications are displayed when the app is i
 
 | Prop                                      | Type                                        | Description                                                                                                                                                                                                                                                                                                                                                                                          | Since |
 | ----------------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| **`presentationOptions`**                 | <code>PresentationOption[]</code>           | This is an array of strings you can combine. Possible values in the array are: - `badge`: badge count on the app icon is updated (default value) - `sound`: the device will ring/vibrate when the push notification is received - `alert`: the push notification is displayed in a native dialog An empty array can be provided if none of the options are desired. badge is only available for iOS. | 1.0.0 |
+| **`presentationOptions`**                 | <code>{}</code>                             | This is an array of strings you can combine. Possible values in the array are: - `badge`: badge count on the app icon is updated (default value) - `sound`: the device will ring/vibrate when the push notification is received - `alert`: the push notification is displayed in a native dialog An empty array can be provided if none of the options are desired. badge is only available for iOS. | 1.0.0 |
 | **`androidForegroundChannelId`**          | <code>AndroidForegroundChannelOption</code> | The channel for android foreground notifications. - 'default': Use the default channel for foreground notifications. - 'auto': Use the channel specified in the notification for foreground notifications. - string: Use the specified channel for foreground notifications. You must create the channel manually.                                                                                   | 1.0.0 |
 | **`androidForegroundChannelName`**        | <code>string</code>                         | The name of the channel for android background notifications if using 'default' for androidForegroundChannelId.                                                                                                                                                                                                                                                                                      | 1.0.0 |
 | **`androidForegroundChannelDescription`** | <code>string</code>                         | The description of the channel for android background notifications if using 'default' for androidForegroundChannelId.                                                                                                                                                                                                                                                                               | 1.0.0 |
@@ -171,48 +171,22 @@ const getDeliveredNotifications = async () => {
 
 <docgen-index>
 
-- [Capacitor Push Notifications](#capacitor-push-notifications)
-  - [Install](#install)
-  - [iOS](#ios)
-  - [Android](#android)
-    - [Variables](#variables)
-  - [Push Notifications icon](#push-notifications-icon)
-  - [Push notifications appearance in foreground](#push-notifications-appearance-in-foreground)
-    - [Examples](#examples)
-  - [Silent Push Notifications / Data-only Notifications](#silent-push-notifications--data-only-notifications)
-      - [iOS](#ios-1)
-      - [Android](#android-1)
-  - [Common Issues](#common-issues)
-  - [Example](#example)
-  - [API](#api)
-    - [register()](#register)
-    - [getDeliveredNotifications()](#getdeliverednotifications)
-    - [removeDeliveredNotifications(...)](#removedeliverednotifications)
-    - [removeAllDeliveredNotifications()](#removealldeliverednotifications)
-    - [createChannel(...)](#createchannel)
-    - [deleteChannel(...)](#deletechannel)
-    - [listChannels()](#listchannels)
-    - [checkPermissions()](#checkpermissions)
-    - [requestPermissions()](#requestpermissions)
-    - [addListener('registration', ...)](#addlistenerregistration-)
-    - [addListener('registrationError', ...)](#addlistenerregistrationerror-)
-    - [addListener('pushNotificationReceived', ...)](#addlistenerpushnotificationreceived-)
-    - [addListener('pushNotificationActionPerformed', ...)](#addlistenerpushnotificationactionperformed-)
-    - [removeAllListeners()](#removealllisteners)
-    - [Interfaces](#interfaces)
-      - [DeliveredNotifications](#deliverednotifications)
-      - [PushNotificationSchema](#pushnotificationschema)
-      - [Channel](#channel)
-      - [ListChannelsResult](#listchannelsresult)
-      - [PermissionStatus](#permissionstatus)
-      - [PluginListenerHandle](#pluginlistenerhandle)
-      - [Token](#token)
-      - [RegistrationError](#registrationerror)
-      - [ActionPerformed](#actionperformed)
-    - [Type Aliases](#type-aliases)
-      - [Importance](#importance)
-      - [Visibility](#visibility)
-      - [PermissionState](#permissionstate)
+* [`register()`](#register)
+* [`getDeliveredNotifications()`](#getdeliverednotifications)
+* [`removeDeliveredNotifications(...)`](#removedeliverednotifications)
+* [`removeAllDeliveredNotifications()`](#removealldeliverednotifications)
+* [`createChannel(...)`](#createchannel)
+* [`deleteChannel(...)`](#deletechannel)
+* [`listChannels()`](#listchannels)
+* [`checkPermissions()`](#checkpermissions)
+* [`requestPermissions()`](#requestpermissions)
+* [`addListener('registration', ...)`](#addlistenerregistration)
+* [`addListener('registrationError', ...)`](#addlistenerregistrationerror)
+* [`addListener('pushNotificationReceived', ...)`](#addlistenerpushnotificationreceived)
+* [`addListener('pushNotificationActionPerformed', ...)`](#addlistenerpushnotificationactionperformed)
+* [`removeAllListeners()`](#removealllisteners)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -222,7 +196,7 @@ const getDeliveredNotifications = async () => {
 ### register()
 
 ```typescript
-register() => Promise<void>
+register() => any
 ```
 
 Register the app to receive push notifications.
@@ -230,6 +204,8 @@ Register the app to receive push notifications.
 This method will trigger the `'registration'` event with the push token or
 `'registrationError'` if there was a problem. It does not prompt the user for
 notification permissions, use `requestPermissions()` first.
+
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -239,12 +215,12 @@ notification permissions, use `requestPermissions()` first.
 ### getDeliveredNotifications()
 
 ```typescript
-getDeliveredNotifications() => Promise<DeliveredNotifications>
+getDeliveredNotifications() => any
 ```
 
 Get a list of notifications that are visible on the notifications screen.
 
-**Returns:** <code>Promise&lt;<a href="#deliverednotifications">DeliveredNotifications</a>&gt;</code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -254,7 +230,7 @@ Get a list of notifications that are visible on the notifications screen.
 ### removeDeliveredNotifications(...)
 
 ```typescript
-removeDeliveredNotifications(delivered: DeliveredNotifications) => Promise<void>
+removeDeliveredNotifications(delivered: DeliveredNotifications) => any
 ```
 
 Remove the specified notifications from the notifications screen.
@@ -262,6 +238,8 @@ Remove the specified notifications from the notifications screen.
 | Param           | Type                                                                      |
 | --------------- | ------------------------------------------------------------------------- |
 | **`delivered`** | <code><a href="#deliverednotifications">DeliveredNotifications</a></code> |
+
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -271,10 +249,12 @@ Remove the specified notifications from the notifications screen.
 ### removeAllDeliveredNotifications()
 
 ```typescript
-removeAllDeliveredNotifications() => Promise<void>
+removeAllDeliveredNotifications() => any
 ```
 
 Remove all the notifications from the notifications screen.
+
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -284,7 +264,7 @@ Remove all the notifications from the notifications screen.
 ### createChannel(...)
 
 ```typescript
-createChannel(channel: Channel) => Promise<void>
+createChannel(channel: Channel) => any
 ```
 
 Create a notification channel.
@@ -295,6 +275,8 @@ Only available on Android O or newer (SDK 26+).
 | ------------- | ------------------------------------------- |
 | **`channel`** | <code><a href="#channel">Channel</a></code> |
 
+**Returns:** <code>any</code>
+
 **Since:** 1.0.0
 
 --------------------
@@ -303,7 +285,7 @@ Only available on Android O or newer (SDK 26+).
 ### deleteChannel(...)
 
 ```typescript
-deleteChannel(args: { id: string; }) => Promise<void>
+deleteChannel(args: { id: string; }) => any
 ```
 
 Delete a notification channel.
@@ -314,6 +296,8 @@ Only available on Android O or newer (SDK 26+).
 | ---------- | ---------------------------- |
 | **`args`** | <code>{ id: string; }</code> |
 
+**Returns:** <code>any</code>
+
 **Since:** 1.0.0
 
 --------------------
@@ -322,14 +306,14 @@ Only available on Android O or newer (SDK 26+).
 ### listChannels()
 
 ```typescript
-listChannels() => Promise<ListChannelsResult>
+listChannels() => any
 ```
 
 List the available notification channels.
 
 Only available on Android O or newer (SDK 26+).
 
-**Returns:** <code>Promise&lt;<a href="#listchannelsresult">ListChannelsResult</a>&gt;</code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -339,7 +323,7 @@ Only available on Android O or newer (SDK 26+).
 ### checkPermissions()
 
 ```typescript
-checkPermissions() => Promise<PermissionStatus>
+checkPermissions() => any
 ```
 
 Check permission to receive push notifications.
@@ -348,7 +332,7 @@ On Android the status is always granted because you can always
 receive push notifications. If you need to check if the user allows
 to display notifications, use local-notifications plugin.
 
-**Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -358,7 +342,7 @@ to display notifications, use local-notifications plugin.
 ### requestPermissions()
 
 ```typescript
-requestPermissions() => Promise<PermissionStatus>
+requestPermissions() => any
 ```
 
 Request permission to receive push notifications.
@@ -371,7 +355,7 @@ for push notification permission and return granted or denied based
 on the user selection. On following calls it will get the current status of
 the permission without prompting again.
 
-**Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -393,7 +377,7 @@ Provides the push notification token.
 | **`eventName`**    | <code>'registration'</code>                                 |
 | **`listenerFunc`** | <code>(token: <a href="#token">Token</a>) =&gt; void</code> |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -415,7 +399,7 @@ Provides an error with the registration problem.
 | **`eventName`**    | <code>'registrationError'</code>                                                    |
 | **`listenerFunc`** | <code>(error: <a href="#registrationerror">RegistrationError</a>) =&gt; void</code> |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -435,7 +419,7 @@ Called when the device receives a push notification.
 | **`eventName`**    | <code>'pushNotificationReceived'</code>                                                              |
 | **`listenerFunc`** | <code>(notification: <a href="#pushnotificationschema">PushNotificationSchema</a>) =&gt; void</code> |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -455,7 +439,7 @@ Called when an action is performed on a push notification.
 | **`eventName`**    | <code>'pushNotificationActionPerformed'</code>                                         |
 | **`listenerFunc`** | <code>(notification: <a href="#actionperformed">ActionPerformed</a>) =&gt; void</code> |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -465,10 +449,12 @@ Called when an action is performed on a push notification.
 ### removeAllListeners()
 
 ```typescript
-removeAllListeners() => Promise<void>
+removeAllListeners() => any
 ```
 
 Remove all native listeners for this plugin.
+
+**Returns:** <code>any</code>
 
 **Since:** 1.0.0
 
@@ -480,9 +466,9 @@ Remove all native listeners for this plugin.
 
 #### DeliveredNotifications
 
-| Prop                | Type                                  | Description                                                         | Since |
-| ------------------- | ------------------------------------- | ------------------------------------------------------------------- | ----- |
-| **`notifications`** | <code>PushNotificationSchema[]</code> | List of notifications that are visible on the notifications screen. | 1.0.0 |
+| Prop                | Type            | Description                                                         | Since |
+| ------------------- | --------------- | ------------------------------------------------------------------- | ----- |
+| **`notifications`** | <code>{}</code> | List of notifications that are visible on the notifications screen. | 1.0.0 |
 
 
 #### PushNotificationSchema
@@ -519,9 +505,9 @@ Remove all native listeners for this plugin.
 
 #### ListChannelsResult
 
-| Prop           | Type                   | Description                                   | Since |
-| -------------- | ---------------------- | --------------------------------------------- | ----- |
-| **`channels`** | <code>Channel[]</code> | List of all the Channels created by your app. | 1.0.0 |
+| Prop           | Type            | Description                                   | Since |
+| -------------- | --------------- | --------------------------------------------- | ----- |
+| **`channels`** | <code>{}</code> | List of all the Channels created by your app. | 1.0.0 |
 
 
 #### PermissionStatus
@@ -531,18 +517,18 @@ Remove all native listeners for this plugin.
 | **`receive`** | <code><a href="#permissionstate">PermissionState</a></code> | Permission state of receiving notifications. | 1.0.0 |
 
 
-#### PluginListenerHandle
-
-| Prop         | Type                                      |
-| ------------ | ----------------------------------------- |
-| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
-
-
 #### Token
 
 | Prop        | Type                | Description                                                              | Since |
 | ----------- | ------------------- | ------------------------------------------------------------------------ | ----- |
 | **`value`** | <code>string</code> | On iOS it contains the APNS token. On Android it contains the FCM token. | 1.0.0 |
+
+
+#### PluginListenerHandle
+
+| Prop         | Type                      |
+| ------------ | ------------------------- |
+| **`remove`** | <code>() =&gt; any</code> |
 
 
 #### RegistrationError
