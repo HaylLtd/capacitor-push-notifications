@@ -1,6 +1,6 @@
 {
   "name": "@haylltd/capacitor-push-notifications",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-beta.1",
   "description": "Improved push notification support for Capacitor apps",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

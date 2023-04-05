@@ -1,3 +1,7 @@
+# [1.0.0-beta.1](https://github.com/HaylLtd/capacitor-push-notifications/compare/v1.0.0-alpha.2...v1.0.0-beta.1) (2023-04-05)
+
+
+
 # [1.0.0-alpha.2](https://github.com/HaylLtd/capacitor-push-notifications/compare/1.0.0-alpha.1...v1.0.0-alpha.2) (2023-04-04)
 
 
