@@ -75,6 +75,7 @@ export interface PushNotificationsPlugin {
    * notification permissions, use `requestPermissions()` first.
    *
    * @since 1.0.0
+   * @return {Promise<void>}
    */
   register(): Promise<void>;
 
@@ -82,6 +83,7 @@ export interface PushNotificationsPlugin {
    * Get a list of notifications that are visible on the notifications screen.
    *
    * @since 1.0.0
+   * @return {Promise<DeliveredNotifications>}
    */
   getDeliveredNotifications(): Promise<DeliveredNotifications>;
 
@@ -89,6 +91,8 @@ export interface PushNotificationsPlugin {
    * Remove the specified notifications from the notifications screen.
    *
    * @since 1.0.0
+   * @param {DeliveredNotifications} delivered
+   * @return {Promise<void>}
    */
   removeDeliveredNotifications(
     delivered: DeliveredNotifications,
@@ -98,6 +102,7 @@ export interface PushNotificationsPlugin {
    * Remove all the notifications from the notifications screen.
    *
    * @since 1.0.0
+   * @return {Promise<void>}
    */
   removeAllDeliveredNotifications(): Promise<void>;
 
@@ -107,6 +112,8 @@ export interface PushNotificationsPlugin {
    * Only available on Android O or newer (SDK 26+).
    *
    * @since 1.0.0
+   * @param {Channel} channel
+   * @return {Promise<void>}
    */
   createChannel(channel: Channel): Promise<void>;
 
@@ -116,6 +123,8 @@ export interface PushNotificationsPlugin {
    * Only available on Android O or newer (SDK 26+).
    *
    * @since 1.0.0
+   * @param { {string} id } args
+   * @return {Promise<void>}
    */
   deleteChannel(args: { id: string }): Promise<void>;
 
@@ -125,6 +134,7 @@ export interface PushNotificationsPlugin {
    * Only available on Android O or newer (SDK 26+).
    *
    * @since 1.0.0
+   * @return {Promise<ListChannelsResult>}
    */
   listChannels(): Promise<ListChannelsResult>;
 
@@ -136,6 +146,7 @@ export interface PushNotificationsPlugin {
    * to display notifications, use local-notifications plugin.
    *
    * @since 1.0.0
+   * @return {Promise<PermissionStatus>}
    */
   checkPermissions(): Promise<PermissionStatus>;
 
@@ -151,6 +162,7 @@ export interface PushNotificationsPlugin {
    * the permission without prompting again.
    *
    * @since 1.0.0
+   * @return {Promise<PermissionStatus>}
    */
   requestPermissions(): Promise<PermissionStatus>;
 
@@ -160,6 +172,9 @@ export interface PushNotificationsPlugin {
    * Provides the push notification token.
    *
    * @since 1.0.0
+   * @param {string} eventName
+   * @param {({Token} token) => void} listenerFunc
+   * @return {Promise<PluginListenerHandle>}
    */
   addListener(
     eventName: 'registration',
@@ -172,6 +187,9 @@ export interface PushNotificationsPlugin {
    * Provides an error with the registration problem.
    *
    * @since 1.0.0
+   * @param {string} eventName
+   * @param {({RegistrationError} error) => void} listenerFunc
+   * @return {Promise<PluginListenerHandle>}
    */
   addListener(
     eventName: 'registrationError',
@@ -182,6 +200,9 @@ export interface PushNotificationsPlugin {
    * Called when the device receives a push notification.
    *
    * @since 1.0.0
+   * @param {string} eventName
+   * @param {({PushNotificationSchema} notification) => void} listenerFunc
+   * @return {Promise<PluginListenerHandle>}
    */
   addListener(
     eventName: 'pushNotificationReceived',
@@ -192,6 +213,9 @@ export interface PushNotificationsPlugin {
    * Called when an action is performed on a push notification.
    *
    * @since 1.0.0
+   * @param {string} eventName
+   * @param {({ActionPerformed} notification) => void} listenerFunc
+   * @return {Promise<PluginListenerHandle>}
    */
   addListener(
     eventName: 'pushNotificationActionPerformed',
@@ -202,6 +226,7 @@ export interface PushNotificationsPlugin {
    * Remove all native listeners for this plugin.
    *
    * @since 1.0.0
+   * @return {Promise<void>}
    */
   removeAllListeners(): Promise<void>;
 }
